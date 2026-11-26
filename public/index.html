@@ -1,100 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Secret Santa</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎅</text></svg>">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b2856"><meta name="description" content="RE/MAX Kenya festive Secret Santa gift exchange."><title>Secret Santa | RE/MAX Kenya</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎁%3C/text%3E%3C/svg%3E">
 <style>
-:root{--bg:#fbf6ee;--card:#fff;--ink:#2a2220;--mute:#7a6c66;--red:#c8312b;--green:#1f6b4a;--line:#eadfd2;--chip:#f3e9dc}
-@media(prefers-color-scheme:dark){:root{--bg:#1a1514;--card:#262020;--ink:#f4ece6;--mute:#b3a59e;--red:#e5534d;--green:#4cae82;--line:#3a3130;--chip:#352c2b}}
-*{box-sizing:border-box}html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:max(20px,env(safe-area-inset-top)) 16px 40px}
-main{max-width:520px;margin:0 auto}
-h1{margin:4px 0 2px;font-size:28px}.sub{color:var(--mute);margin:0 0 14px}
-.min{background:var(--red);color:#fff;border-radius:12px;padding:12px 14px;font-weight:600;text-align:center;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-h2{font-size:17px;margin:0 0 10px}
-input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink);margin-bottom:10px}
-button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:12px 16px;background:var(--green);color:#fff;width:100%;cursor:pointer;margin-bottom:8px}
-button.alt{background:var(--chip);color:var(--ink)}button:disabled{opacity:.5}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:var(--chip);border-radius:999px;padding:6px 12px;font-size:15px}
-.msg{min-height:20px;font-size:14px;color:var(--red);margin:0 0 8px}.ok{color:var(--green)}
-.reveal{text-align:center;padding:18px 8px}.big{font-size:32px;font-weight:700;color:var(--red);margin:6px 0}
-.note{font-size:13px;color:var(--mute)}.row{display:flex;gap:8px}.row button{width:auto}
-details{margin-top:6px}summary{cursor:pointer;color:var(--mute);font-size:14px;margin-bottom:10px}
-</style>
-</head>
-<body>
-<main>
-<h1>🎅 Secret Santa</h1>
-<p class="sub">Add your nickname, wait for the draw, then surprise your match.</p>
-<div class="min">🎁 Minimum gift: Sh 1,500</div>
-<div id="app"></div>
-</main>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;color:#183055;background:#f5f7fb;--navy:#0c2855;--blue:#134b98;--red:#d52e38;--ink:#183055;--muted:#65748c;--line:#dce4f0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 10% 5%,#e1eaff 0,transparent 40%),#f5f7fb}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}
+.top{background:#0b2856;color:#fff;padding:15px 24px}.topinner{max-width:1080px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.045em}.brandmark{background:#fff;color:#d52e38;border-radius:9px;padding:7px 10px;font-size:17px;letter-spacing:-.06em}.brandtext small{display:block;color:#adc3e4;font-weight:500;letter-spacing:.12em;font-size:9px}.topright{color:#c9d9ef;font-size:12px;letter-spacing:.08em;text-align:right}
+.container{max-width:1080px;margin:auto;padding:38px 22px 55px}.hero{background:linear-gradient(120deg,#0b2856 0%,#144987 65%,#246cba 100%);border-radius:26px;padding:42px 42px 35px;color:#fff;position:relative;overflow:hidden;box-shadow:0 20px 50px #102e5b24}.hero:before{content:'✦';position:absolute;right:200px;top:15px;font-size:60px;color:#ffffff28}.hero:after{content:'❄';position:absolute;right:48px;bottom:-59px;font-size:230px;color:#ffffff12}.eyebrow{text-transform:uppercase;font-weight:750;letter-spacing:.16em;font-size:11px;color:#e9c5cd}.hero h1{font-size:clamp(36px,5.5vw,60px);line-height:1.06;letter-spacing:-.045em;margin:16px 0}.hero h1 span{color:#ffdadc}.hero p{font-size:16px;max-width:510px;color:#d6e5fb;line-height:1.65;margin-bottom:23px}.herofooter{display:flex;flex-wrap:wrap;gap:10px}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid #ffffff48;border-radius:99px;padding:9px 14px;font-size:13px;background:#ffffff10}.pill strong{color:#fff}.bodygrid{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(290px,.76fr);gap:22px;margin-top:24px}.stack{display:grid;align-content:start;gap:22px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:27px;box-shadow:0 7px 25px #19396508}.cardhead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.card h2{font-size:21px;letter-spacing:-.03em;margin:0}.kicker{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin:0 0 8px}.muted{color:var(--muted);line-height:1.65;font-size:14px}.label{display:block;font-size:12px;font-weight:750;margin:17px 0 7px}.field{width:100%;padding:14px 15px;border:1px solid #d7dfec;background:#fbfcfe;color:var(--ink);border-radius:11px;outline:none;min-height:51px}.field:focus{border-color:#2260aa;box-shadow:0 0 0 3px #2260aa18}.field::placeholder{color:#99a5b8}.btn{border:0;border-radius:11px;background:var(--red);color:#fff;font-weight:760;padding:15px 20px;width:100%;min-height:51px;margin-top:20px}.btn:hover{filter:brightness(.95)}.btn.blue{background:var(--blue)}.btn.ghost{background:#ebf1fa;color:#173c76}.btn.small{min-height:43px;margin-top:9px;padding:10px 15px}.notice{background:#ecf4ff;color:#264879;border-radius:11px;padding:13px 15px;font-size:13px;line-height:1.55}.notice.success{background:#eaf8ee;color:#24633e}.notice.error{background:#fff0f0;color:#a62730}.note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px}.count{background:#e9f1ff;color:#1852a0;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:800}.avatars{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.avatar{background:#edf3fc;color:#254a7c;border-radius:99px;padding:9px 12px;font-size:12px;font-weight:650}.empty{padding:21px 15px;text-align:center;border:1px dashed #c7d5e8;border-radius:12px;color:var(--muted);font-size:13px}.steps{display:grid;gap:18px;margin-top:21px}.step{display:flex;gap:13px}.stepnum{width:30px;height:30px;flex:none;background:#eaf2ff;color:#1851a2;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:13px}.step strong{font-size:14px}.step p{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.divider{border-top:1px solid var(--line);margin:22px 0}.admin summary{font-size:13px;color:#5a6b87;font-weight:700;cursor:pointer}.admin .card{margin-top:12px}.adminrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.adminrow .label{margin-top:10px}.result{text-align:center;background:linear-gradient(160deg,#f0f6ff,#fff7f7);border:1px solid #d8e7ff;border-radius:17px;padding:30px 15px}.result .match{font-size:clamp(29px,5vw,42px);font-weight:850;color:#d52e38;overflow-wrap:anywhere}.footer{text-align:center;margin:27px 0;color:#8390a5;font-size:12px}.hide{display:none}.spinner{display:inline-block;animation:spin 2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.container{padding:18px 14px 40px}.hero{padding:29px 25px;border-radius:19px}.hero:after{font-size:160px;right:-20px;bottom:-38px}.hero p{font-size:14px}.bodygrid{grid-template-columns:1fr}.card{padding:22px}.top{padding:13px 16px}.topright{font-size:10px}.brand{gap:7px}.brandmark{font-size:14px}}
+</style></head><body>
+<header class="top"><div class="topinner"><div class="brand"><div class="brandmark">RE/MAX</div><div class="brandtext">KENYA <small>PROFESSIONALS &amp; TEAM</small></div></div><div class="topright">THE 2026 FESTIVE EDITION ✦</div></div></header>
+<main class="container"><section class="hero"><div class="eyebrow">✦ Together. Giving. Celebrating.</div><h1>Something magical<br><span>is in the air.</span> 🎁</h1><p>Welcome to the RE/MAX Kenya Secret Santa! Join the festive fun, keep your match a surprise, and make someone's day special.</p><div class="herofooter"><span class="pill">🎁 <strong>Minimum gift: KES 1,500</strong></span><span class="pill">🤫 Secret until gift exchange</span><span class="pill">🎄 RE/MAX Kenya family</span></div></section>
+<div class="bodygrid"><div class="stack"><section class="card" id="primary"><div class="cardhead"><div><p class="kicker">Your invitation</p><h2>Join the Secret Santa draw</h2></div><span style="font-size:29px">🎅🏿</span></div><p class="muted">Register with a nickname and create a private PIN. Once the organiser runs the draw, use your PIN to find out who you'll surprise.</p><form id="joinform"><label class="label" for="nick">YOUR NICKNAME</label><input class="field" id="nick" name="nick" maxlength="24" placeholder="e.g. FestiveStar" autocomplete="nickname" required><label class="label" for="gender">GENDER</label><select class="field" id="gender" required><option value="">Select an option</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select><label class="label" for="pin">CREATE YOUR 4-DIGIT PIN</label><input class="field" id="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" minlength="4" maxlength="4" placeholder="••••" autocomplete="new-password" required><p class="note">🔒 Keep your PIN safe. You'll need it to view your match. We cannot recover forgotten PINs.</p><button class="btn" type="submit">Count me in! →</button></form><div id="joinmsg" role="status" aria-live="polite"></div></section>
+<section class="card" id="revealcard"><div class="cardhead"><div><p class="kicker">The big reveal</p><h2>Find your Secret Santa match</h2></div><span style="font-size:26px">🔐</span></div><div id="revealcontent"><div class="notice">The organiser will draw the names when registration is complete. Come back to this page to unlock your match.</div></div></section></div>
+<div class="stack"><section class="card"><div class="cardhead"><h2>Our festive circle</h2><span id="counter" class="count">0 joined</span></div><div id="participants" class="empty">No participants yet. Be the first! ✨</div><p id="status" class="note">Registration is open.</p></section><section class="card"><p class="kicker">Simple &amp; magical</p><h2>How it works</h2><div class="steps"><div class="step"><span class="stepnum">1</span><div><strong>Register</strong><p>Choose your nickname, gender option and a 4-digit PIN.</p></div></div><div class="step"><span class="stepnum">2</span><div><strong>Wait for the draw</strong><p>The organiser secretly matches everyone. Nobody gets themselves.</p></div></div><div class="step"><span class="stepnum">3</span><div><strong>Reveal your person</strong><p>Return with your nickname and PIN when results are available.</p></div></div><div class="step"><span class="stepnum">4</span><div><strong>Make someone's day</strong><p>Bring a thoughtful gift of at least KES 1,500 to the end-year party. No cash gifts.</p></div></div></div></section><details class="admin" id="admin"><summary>🔑 Organiser access</summary><div class="card"><p class="kicker">Private controls</p><h2>Manage the event</h2><div id="admincontents"><label class="label" for="adminkey">ORGANISER PASSWORD</label><input class="field" type="password" id="adminkey" placeholder="Enter admin password"><button class="btn blue small" id="loginbtn">Unlock organiser panel</button></div><div id="adminmsg" role="status" aria-live="polite"></div></div></details></div></div><footer class="footer">Made with ❤️ for RE/MAX Kenya &amp; RE/MAX Professionals · Secret Santa 2026</footer></main>
 <script>
-(function(){
-var S={players:[],drawn:false,drawAt:null,ready:false},skew=0,revealed=null,revGender=null,msg='',ok=false,adminKey='',isAdmin=false;
-try{adminKey=sessionStorage.getItem('ss-key')||''}catch(e){}
-function $(i){return document.getElementById(i)}
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function me(){try{return localStorage.getItem('ss-me')||''}catch(e){return ''}}
-function now(){return Date.now()+skew}
-function fmt(t){return new Date(t).toLocaleString([],{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
-function left(t){var s=Math.max(0,Math.floor((t-now())/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return(d?d+'d ':'')+h+'h '+m+'m'}
-function dtval(){if(!S.drawAt)return'';return new Date(S.drawAt-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)}
-function say(t,g){msg=t;ok=!!g;var m=$('msg');if(m){m.textContent=t;m.className='msg'+(g?' ok':'')}}
-async function api(p,body){
-  try{var r=await fetch('/api/'+p,{method:body?'POST':'GET',headers:{'content-type':'application/json'},body:body?JSON.stringify(body):undefined});
-    var d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong');return d}
-  catch(e){throw new Error(e.message||'Network problem')}
-}
-async function load(){try{var d=await api('state');skew=d.now-Date.now();S=d;if(!typing())render()}catch(e){}}
-function typing(){var a=document.activeElement;return a&&/^(nick|gender|pin|rpin|who|dt|key)$/.test(a.id)}
+(()=>{'use strict';
+const $=id=>document.getElementById(id), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let state={players:[],drawn:false,ready:false,open:true,drawAt:null,closeAt:null},adminKey='',loggedIn=false,match=null,matchGender=null,skew=0,organiserMatches=[];
+const stored=()=>{try{return localStorage.getItem('remax-santa-nick')||''}catch{return ''}};
+const remember=n=>{try{localStorage.setItem('remax-santa-nick',n)}catch{}};
+const msg=(id,txt,kind='error')=>{$(id).innerHTML=txt?`<div class="notice ${kind}" style="margin-top:14px">${esc(txt)}</div>`:''};
+const clock=t=>new Date(t).toLocaleString('en-KE',{timeZone:'Africa/Nairobi',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true})+' EAT';
+const dateInput=t=>{if(!t)return''; const d=new Date(t+3*60*60*1000);return d.toISOString().slice(0,16)};
+const localDate=v=>v?new Date(v+':00+03:00').getTime():null;
+async function api(endpoint,data){const r=await fetch('/api/'+endpoint,{method:data===undefined?'GET':'POST',headers:{'Content-Type':'application/json'},body:data===undefined?undefined:JSON.stringify(data),cache:'no-store'});let obj;try{obj=await r.json()}catch{throw Error('Unable to contact the server. Check the Netlify deployment.')}if(!r.ok)throw Error(obj.error||'Something went wrong.');return obj}
 function render(){
-  var h='';
-  if(S.ready&&!revealed)h+='<div class="min" style="background:var(--green)">🔔 Draw day! Your match is ready. Enter your PIN below.</div>';
-  if(revealed)h+='<div class="card reveal"><div>You are the Secret Santa for</div><div class="big">'+esc(revealed)+'</div>'+(revGender?'<div class="note">Gender: '+esc(revGender)+' (to help you pick a gift)</div>':'')+'<p>Gift them something thoughtful worth <b>at least Sh 1,500</b>. Keep it secret! 🤫</p><button class="alt" id="hide">Hide</button></div>';
-  if(!S.drawn)h+='<div class="card"><h2>Join the draw</h2><input id="nick" maxlength="20" placeholder="Your nickname" autocomplete="off"><select id="gender"><option value="">Select your gender</option><option>Male</option><option>Female</option></select><input id="pin" inputmode="numeric" maxlength="4" placeholder="Choose a 4-digit PIN" autocomplete="off"><p class="msg'+(ok?' ok':'')+'" id="msg">'+esc(msg)+'</p><button id="joinBtn">Add me</button><p class="note">Your PIN keeps your match private. No email needed.</p></div>';
-  h+='<div class="card"><h2>Participants ('+S.players.length+')</h2>'+(S.players.length?'<div class="chips">'+S.players.map(function(n){return'<span class="chip">'+esc(n)+'</span>'}).join('')+'</div>':'<p class="note">Nobody has joined yet.</p>');
-  if(!S.drawn)h+='<p class="note">'+(S.drawAt?'The draw is on <b>'+fmt(S.drawAt)+'</b> ('+left(S.drawAt)+' to go). Your match will show up here then.':'The organiser will run the draw when everyone has joined.')+'</p>';
-  h+='</div>';
-  if(S.drawn&&!S.ready)h+='<div class="card reveal"><h2>🎄 Names are drawn!</h2><p>Matches unlock on <b>'+fmt(S.drawAt)+'</b></p><div class="big">'+left(S.drawAt)+'</div><p class="note">Come back then and enter your PIN.</p></div>';
-  if(S.ready)h+='<div class="card"><h2>🎉 See your match</h2><select id="who"><option value="">Pick your nickname</option>'+S.players.map(function(n){return'<option'+(n===me()?' selected':'')+'>'+esc(n)+'</option>'}).join('')+'</select><input id="rpin" inputmode="numeric" maxlength="4" placeholder="Your 4-digit PIN"><p class="msg" id="msg">'+esc(msg)+'</p><button id="showBtn">Show my match</button></div>';
-  h+='<details'+(isAdmin?' open':'')+'><summary>Organiser tools</summary>';
-  if(!isAdmin)h+='<div class="card"><input id="key" type="password" placeholder="Organiser password"><button class="alt" id="keyBtn">Unlock</button><p class="msg" id="msg2"></p></div>';
-  else{
-    h+='<div class="card"><label class="note">Draw date &amp; time (matches unlock then)</label><div class="row"><input type="datetime-local" id="dt" value="'+dtval()+'"><button class="alt" id="dateBtn">Save</button></div>';
-    if(!S.drawn)h+='<button id="drawBtn"'+(S.players.length<3?' disabled':'')+'>🎲 Draw names</button><p class="note">Needs at least 3 people. Closes sign-ups.</p>';
-    h+='<button class="alt" id="resetBtn">Start over</button><p class="msg" id="msg2"></p></div>';
-  }
-  h+='</details>';
-  $('app').innerHTML=h;
-  var b;
-  if(b=$('joinBtn'))b.onclick=join;if(b=$('showBtn'))b.onclick=show;if(b=$('hide'))b.onclick=function(){revealed=null;render()};
-  if(b=$('keyBtn'))b.onclick=unlock;if(b=$('dateBtn'))b.onclick=saveDate;if(b=$('drawBtn'))b.onclick=draw;if(b=$('resetBtn'))b.onclick=reset;
+$('counter').textContent=state.players.length+' joined';
+$('participants').className=state.players.length?'avatars':'empty';
+$('participants').innerHTML=state.players.length?state.players.map(n=>`<span class="avatar">🎁 ${esc(n)}</span>`).join(''):'No participants yet. Be the first! ✨';
+$('status').textContent=state.drawn?'The draw has been completed.':state.closeAt?'Registration closes '+clock(state.closeAt):'Registration is open until the organiser closes it.';
+$('joinform').classList.toggle('hide',!state.open);
+if(!state.open){$('primary').querySelector('p.muted').textContent=state.drawn?'The names have been drawn. Registration is now closed.':'Registration has closed. Watch this space for the draw.'}
+const r=$('revealcontent');
+if(match){r.innerHTML=`<div class="result"><p class="kicker">You are gifting...</p><div class="match">🎁 ${esc(match)}</div>${matchGender?`<p class="muted">Gender: ${esc(matchGender)}</p>`:''}<p class="muted">Keep it a secret! Choose a thoughtful gift worth at least KES 1,500.</p></div><button class="btn ghost small" id="hidebtn">Hide my match</button>`;$('hidebtn').onclick=()=>{match=null;matchGender=null;render()};return}
+if(!state.ready){r.innerHTML=state.drawn?`<div class="notice">🎄 The names have been drawn! ${state.drawAt?'Matches unlock on '+clock(state.drawAt)+'.':'Matches will be released soon.'}</div>`:`<div class="notice">⏳ Waiting for the organiser to draw the names. You'll use your nickname and PIN here when the results are available.</div>`;return}
+r.innerHTML=`<p class="muted">Your match is ready! Pick your nickname and enter your 4-digit PIN.</p><form id="revealf"><label class="label" for="who">YOUR NICKNAME</label><select class="field" id="who" required><option value="">Choose your nickname</option>${state.players.map(n=>`<option value="${esc(n)}" ${n===stored()?'selected':''}>${esc(n)}</option>`).join('')}</select><label class="label" for="rpin">YOUR SECRET PIN</label><input class="field" id="rpin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" minlength="4" placeholder="••••" required><button class="btn" type="submit">Reveal my match 🎁</button></form><div id="revealmsg" role="status" aria-live="polite"></div>`;
+$('revealf').onsubmit=async e=>{e.preventDefault();const btn=e.submitter;btn.disabled=true;try{const who=$('who').value;const d=await api('reveal',{nick:who,pin:$('rpin').value});remember(who);match=d.match;matchGender=d.gender;render()}catch(err){msg('revealmsg',err.message)}finally{btn.disabled=false}};
 }
-function am(t,g){var m=$('msg2');if(m){m.textContent=t;m.className='msg'+(g?' ok':'')}}
-async function join(){
-  var nick=$('nick').value.trim(),pin=$('pin').value.trim();$('joinBtn').disabled=true;
-  try{await api('join',{nick:nick,gender:$('gender').value,pin:pin});try{localStorage.setItem('ss-me',nick)}catch(e){}msg='You’re in, '+nick+'! Remember your PIN.';ok=true;await load();render()}
-  catch(e){say(e.message);$('joinBtn').disabled=false}
+async function refresh(){try{const d=await api('state');state=d;skew=d.now-Date.now();if(!document.activeElement?.matches('input,select'))render()}catch(err){console.error(err)}}
+$('joinform').onsubmit=async e=>{e.preventDefault();const btn=e.submitter;btn.disabled=true;try{const nick=$('nick').value.trim();await api('join',{nick,gender:$('gender').value,pin:$('pin').value});remember(nick);$('joinform').reset();msg('joinmsg',`You're in, ${nick}! Keep your four-digit PIN safe and return for the draw.`,'success');await refresh();render()}catch(err){msg('joinmsg',err.message)}finally{btn.disabled=false}};
+function adminRender(){if(!loggedIn)return;$('admincontents').innerHTML=`<div class="notice success">✅ Organiser access unlocked</div><div class="adminrow"><div><label class="label" for="closeat">REGISTRATION CLOSES (EAT)</label><input class="field" id="closeat" type="datetime-local" value="${dateInput(state.closeAt)}"></div><div><label class="label" for="drawat">MATCHES UNLOCK (EAT)</label><input class="field" id="drawat" type="datetime-local" value="${dateInput(state.drawAt)}"></div></div><p class="note">Leave either field blank for no deadline. Time fields use Nairobi time (EAT).</p><button class="btn blue small" id="savebtn">Save event dates</button><div class="divider"></div><p class="muted">Current participants: <strong>${state.players.length}</strong></p>${!state.drawn?'<button class="btn small" id="drawbtn">🎲 Draw names &amp; close registration</button><p class="note">At least three participants are required. Each person receives exactly one different person. The draw cannot be rerun without resetting everyone.</p>':'<div class="notice success">The draw has been completed. No further registrations are allowed.</div>'}${state.drawn?'<button class="btn blue small" id="viewmatchesbtn">View all matches (organiser only)</button><div id="allmatches"></div>':''}<button class="btn ghost small" id="resetbtn">Reset entire event</button>`;
+$('savebtn').onclick=async()=>{try{await api('config',{key:adminKey,closeAt:localDate($('closeat').value),drawAt:localDate($('drawat').value)});await refresh();adminRender();msg('adminmsg','Event dates saved.','success')}catch(e){msg('adminmsg',e.message)}};
+if($('drawbtn'))$('drawbtn').onclick=async()=>{if(!confirm(`Run a permanent draw for ${state.players.length} participants? Registration will close.`))return;try{await api('draw',{key:adminKey});await refresh();adminRender();msg('adminmsg','Draw completed! Participants can view their match when the unlock time arrives.','success')}catch(e){msg('adminmsg',e.message)}};
+if($('viewmatchesbtn'))$('viewmatchesbtn').onclick=async()=>{
+  try {
+    const d=await api('admin-matches',{key:adminKey});
+    organiserMatches=d.matches;
+    const target=$('allmatches');
+    target.innerHTML=`<p class="note">PRIVATE MC LIST — Do not share with participants before the gift exchange.</p><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr><th style="text-align:left;padding:9px">#</th><th style="text-align:left;padding:9px">Giver</th><th style="text-align:left;padding:9px">Recipient</th><th style="text-align:left;padding:9px">Gender</th></tr></thead><tbody>${organiserMatches.map((m,i)=>`<tr><td style="padding:9px;border-top:1px solid #eee">${i+1}</td><td style="padding:9px;border-top:1px solid #eee">${esc(m.giver)}</td><td style="padding:9px;border-top:1px solid #eee">${esc(m.recipient)}</td><td style="padding:9px;border-top:1px solid #eee">${esc(m.recipientGender||'—')}</td></tr>`).join('')}</tbody></table></div><button class="btn blue small" id="exportmccsv">Download private MC list (CSV)</button>`;
+    $('exportmccsv').onclick=()=>{
+      const safe=x=>{let v=String(x??'');if(/^[\s]*[=+@\-]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+      const rows=[['No.','Giver','Recipient','Recipient gender'],...organiserMatches.map((m,i)=>[i+1,m.giver,m.recipient,m.recipientGender])];
+      const csv='\uFEFF'+rows.map(row=>row.map(safe).join(',')).join('\r\n');
+      const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+      const a=document.createElement('a');a.href=url;a.download='REMAX_Secret_Santa_PRIVATE_MC_List.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    };
+  }catch(e){msg('adminmsg',e.message)}
+};
+$('resetbtn').onclick=async()=>{if(prompt('This permanently deletes ALL participants, PINs and matches. Type RESET to confirm:')!=='RESET')return;try{await api('reset',{key:adminKey,confirm:'RESET'});match=null;await refresh();adminRender();msg('adminmsg','The event has been reset.','success')}catch(e){msg('adminmsg',e.message)}};
 }
-async function show(){
-  var nick=$('who').value,pin=$('rpin').value.trim();if(!nick||!pin)return say('Pick your nickname and enter your PIN.');
-  try{var d=await api('reveal',{nick:nick,pin:pin});try{localStorage.setItem('ss-me',nick)}catch(e){}revealed=d.match;revGender=d.gender;msg='';render()}catch(e){say(e.message)}
-}
-async function unlock(){
-  var k=$('key').value;try{await api('admin-check',{key:k});adminKey=k;isAdmin=true;try{sessionStorage.setItem('ss-key',k)}catch(e){}render()}catch(e){am(e.message)}
-}
-async function saveDate(){
-  var v=$('dt').value;try{await api('config',{key:adminKey,drawAt:v?new Date(v).getTime():null});await load();render();am('Draw date saved.',true)}catch(e){am(e.message)}
-}
-async function draw(){try{await api('draw',{key:adminKey});await load();render()}catch(e){am(e.message)}}
-async function reset(){if(!confirm('Clear everyone and the draw? This cannot be undone.'))return;try{await api('reset',{key:adminKey});revealed=null;await load();render()}catch(e){am(e.message)}}
-if(adminKey)api('admin-check',{key:adminKey}).then(function(){isAdmin=true;render()},function(){});
-render();load();setInterval(load,20000);
+$('loginbtn').onclick=async()=>{const key=$('adminkey').value;try{await api('admin-check',{key});adminKey=key;loggedIn=true;await refresh();adminRender()}catch(e){msg('adminmsg',e.message)}};
+refresh();setInterval(()=>{if(!document.hidden)refresh()},30000);
 })();
-</script>
-</body>
-</html>
+</script></body></html>
