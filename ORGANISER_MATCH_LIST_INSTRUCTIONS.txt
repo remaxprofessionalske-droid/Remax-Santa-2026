@@ -1,0 +1,26 @@
+ORGANISER MATCH LIST — THIS EXACT SECRET SANTA APP
+
+This is the same app from secret-santa-netlify (2)(1).zip with one additional organiser-only feature:
+  View all matches (organiser only) -> Download private MC list (CSV).
+
+IMPORTANT: The 22 actual participant records and assignments are NOT in the ZIP provided.
+They are stored in Netlify Blobs attached to the original Netlify site. They cannot
+be included in this ZIP without an authenticated export of the live site's records.
+The new feature reads the live records once deployed to the SAME Netlify site,
+using the SAME storage and ADMIN_KEY. It does not create or alter assignments.
+
+HOW TO APPLY:
+1. Back up your existing GitHub repository/deployment and verify your live site
+   currently shows the 22 participants and a completed draw.
+2. Update the files in the GitHub repository attached to your EXISTING Netlify
+   site (not a new Netlify project). Keep the same Netlify site and environment.
+3. Let the existing project deploy the changes. Do NOT press Start over or Draw.
+4. Open Organiser tools, unlock with your existing admin password.
+5. Select View all matches (organiser only), then Download private MC list (CSV).
+6. Store the CSV privately and give it only to your MC.
+
+Do not follow the old README's "create a new site" instruction for this update.
+A separate new Netlify site will have a different/empty Blob database.
+
+If the live site has 0 participants, STOP: it is not reading the expected
+original records. Changing code alone cannot restore a missing data store.

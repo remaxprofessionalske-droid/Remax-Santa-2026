@@ -1,9 +1,7 @@
 {
-  "name": "remax-kenya-secret-santa",
-  "version": "2.0.0",
+  "name": "secret-santa",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "RE/MAX Kenya Secret Santa registration and private draw",
-  "scripts": { "check": "node --check netlify/functions/api.mjs" },
   "dependencies": { "@netlify/blobs": "^8.1.0" }
 }
